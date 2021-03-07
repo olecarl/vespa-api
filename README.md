@@ -1,1 +1,9 @@
-# Another great REST API
+# Vespa model API
+
+##Features
+
+##Installation
+
+##Usage
+
+##Documentation

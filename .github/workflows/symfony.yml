@@ -32,14 +32,15 @@ jobs:
     - name: Create database
       run: bin/console doctrine:database:create --env=test
 
+    - name: Update database schema
+      run: bin/console doctrine:schema:update --force --env=test
+
     - name: Validate database schema
       run: bin/console doctrine:schema:validate --skip-sync --env test
 
     - name: Run test suite
-      run: vendor/bin/codecept run --steps --debug
 
-  #  - name: Health Check
-  #    run: bin/console monitor:health
+      run: vendor/bin/codecept run --steps --debug
 
     - name: PHP Metrics Report
       run: vendor/bin/phpmetrics --plugins=symfony .
