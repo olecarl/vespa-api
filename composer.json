@@ -84,7 +84,6 @@
         "codeception/module-rest": "^1.2",
         "codeception/module-symfony": "^1.6",
         "phpmetrics/phpmetrics": "^2.7",
-        "symfony/maker-bundle": "^1.29",
         "symfony/requirements-checker": "^2.0"
     }
 }
