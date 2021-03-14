@@ -3,6 +3,7 @@
 namespace App\Tests\api;
 
 use App\Tests\ApiTester;
+use Codeception\Util\HttpCode;
 
 /**
  * Class ModelCest
@@ -12,6 +13,8 @@ use App\Tests\ApiTester;
 class ModelCest
 {
 
+    /** @var array $item */
+    private $item;
 
     public function _before(ApiTester $I)
     {
@@ -20,9 +23,50 @@ class ModelCest
         $I->expect('content type is application/ld+json');
         $I->haveHttpHeader('Content-Type', 'application/ld+json');
         $I->haveHttpHeader('accept', 'application/ld+json');
+
+        $params = [
+            'title' => 'Test'
+        ];
+
+        $I->amGoingTo('create a new Model');
+        $I->sendPOST('/models', $params);
+
+        $I->expect('Response is created (201)');
+        $I->seeResponseCodeIs(HttpCode::CREATED);
+
+        $I->expect('Valid Json Response');
+        $I->seeResponseIsJson();
+
+        $I->expect('Route is matching');
+        $I->seeCurrentRouteIs('api_models_post_collection');
+
+        list($item) = $I->grabDataFromResponseByJsonPath('$.');
+        $this->item = $item;
     }
 
     /**
+     * Try to GET model
+     *
+     * @param ApiTester $I
+     */
+    public function tryToGetModel(ApiTester $I)
+    {
+        $I->amGoingTo('Retrieve a Model');
+        $I->sendGET($this->item['@id']);
+
+        $I->expect('Response is successful (200)');
+        $I->seeResponseCodeIsSuccessful();
+
+        $I->expect('current route is matching');
+        $I->seeCurrentRouteIs('api_models_get_item');
+
+        $I->expect('Valid Json Response');
+        $I->seeResponseIsJson();
+    }
+
+    /**
+     * Try to GET model collection
+     *
      * @param ApiTester $I
      */
     public function tryToGetModels(ApiTester $I)
@@ -52,14 +96,17 @@ class ModelCest
     }
 
     /**
+     * Try to DELETE model
+     *
+     * @group integration
      * @param ApiTester $I
-     *
-     * public function tryToPostModel(ApiTester $I)
-     * {
-     * $I->amGoingTo('POST new model');
-     * $I->sendPost('models', ['title' => 'V50 N']);
-     *
-     * $I->expect('request is successful');
-     * $I->seeResponseCodeIsSuccessful();
-     * } */
+     */
+    public function tryToDeleteModel(ApiTester $I)
+    {
+        $I->amGoingTo('remove Model');
+        $I->sendDELETE($this->item['@id']);
+
+        $I->expect('Response is no content');
+        $I->seeResponseCodeIs(HttpCode::NO_CONTENT);
+    }
 }
