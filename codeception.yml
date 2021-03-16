@@ -18,4 +18,3 @@ coverage:
     exclude:
         - src/Kernel.php
         - migrations/*
-        - src/Entity/*
