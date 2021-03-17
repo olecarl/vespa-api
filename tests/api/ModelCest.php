@@ -25,7 +25,11 @@ class ModelCest
         $I->haveHttpHeader('accept', 'application/ld+json');
 
         $params = [
-            'title' => 'Test'
+            'title' => '50 N',
+            'type' => 'V5A1T',
+            'buildFrom' => '1963-01-01',
+            'buildTo' => '1971-12-31',
+            'quantity' => 273276
         ];
 
         $I->amGoingTo('create a new Model');

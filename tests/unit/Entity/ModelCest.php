@@ -12,10 +12,18 @@ use App\Tests\UnitTester;
  */
 class ModelCest
 {
+
+
+    /**
+     * Test string representation
+     *
+     * @param UnitTester $I
+     */
     public function testToString(UnitTester $I)
     {
-        $model = new Model("Test");
+        $model = new Model("Test", "X1A1T");
 
-        $I->assertEquals($model->getTitle(), $model->__toString());
+        $I->assertIsString($model->__toString());
+        $I->assertEquals("Test (X1A1T)", $model->__toString());
     }
 }
