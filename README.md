@@ -1,4 +1,4 @@
-# Vespa model API
+# Vespa API
 
 ![Build Status](https://github.com/olecarl/vespa-api/actions/workflows/symfony.yml/badge.svg)
 
@@ -11,6 +11,22 @@ Classic Vespa model catalogue with a RESTful Web API
 
 ##Installation
 
+Clone the source code direct from Github repository:
+```markdown
+git clone https://github.com/olecarl/vespa-api.git
+```
+
 ##Usage
+Start local webserver and your browser with this url:
+```markdown
+symfony serve
+
+https://127.0.0.1:8000
+```
+
+Run the Codeception testsuite:
+```markdown
+vendor/bin/codecept run
+```
 
 ##Documentation
