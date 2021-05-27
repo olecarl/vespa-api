@@ -2,6 +2,7 @@
 
 namespace App\Tests\functional;
 
+use App\Tests\ApiTester;
 use App\Tests\FunctionalTester;
 use Codeception\Example;
 
@@ -13,6 +14,14 @@ use Codeception\Example;
 class SmokeTestCest
 {
 
+    public function _before(FunctionalTester $I)
+    {
+        $I->am('Anonymous');
+
+        $I->expect('content type is text/html');
+        $I->haveHttpHeader('Content-Type', 'text/html');
+        $I->haveHttpHeader('accept', 'text/html');
+    }
     /**
      * @param FunctionalTester $I
      * @param Example $example
@@ -46,7 +55,8 @@ class SmokeTestCest
      */
     private function providePages() : array {
         return [
-            ['url' => '/']
+            ['url' => '/'],
+            ['url' => '/models']
         ];
     }
 }

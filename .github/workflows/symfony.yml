@@ -17,8 +17,8 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate
 
-  #  - name: Clear Composer Cache
-  #    run: composer clearcache
+    - name: Clear Composer Cache
+      run: composer clearcache
 
     - name: Install dependencies
       run: composer install --prefer-dist
@@ -27,28 +27,23 @@ jobs:
       run: vendor/bin/requirements-checker
 
     - name: Build test suite
-      run: vendor/bin/codecept build
+      run: composer run-script test build
 
     - name: Create database
       run: bin/console doctrine:database:create --env=test
+
+    - name: Update database schema
+      run: bin/console doctrine:schema:update --force --env=test
 
     - name: Validate database schema
       run: bin/console doctrine:schema:validate --skip-sync --env test
 
     - name: Run test suite
-      run: vendor/bin/codecept run --steps --debug
 
-  #  - name: Health Check
-  #    run: bin/console monitor:health
+      run: composer run-script test run
 
     - name: PHP Metrics Report
       run: vendor/bin/phpmetrics --plugins=symfony .
-
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    # - name: Run test suite
-    #   run: composer run-script test
 
     # - name: Check CS
     #   run: vendor/bin/php-cs-fixer fix -v --dry-run --diff-format=udiff

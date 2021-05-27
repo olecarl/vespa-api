@@ -10,11 +10,11 @@ extensions:
     enabled:
         - Codeception\Extension\RunFailed
 params:
-    - .env
+    - .env.test
 coverage:
     enabled: true
     include:
         - src/*.php
     exclude:
-#        - src/Kernel.php
+        - src/Kernel.php
         - migrations/*
