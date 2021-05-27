@@ -6,9 +6,12 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ModelRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Dto\ModelResponse;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     output=ModelResponse::class
+ * )
  * @ORM\Entity(repositoryClass=ModelRepository::class)
  * @ORM\Table(name="vespa_model")
  */
