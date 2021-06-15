@@ -2,22 +2,24 @@
 
 ![Build Status](https://github.com/olecarl/vespa-api/actions/workflows/symfony.yml/badge.svg)
 
-##Features
+## Features
 
 Classic Vespa model catalogue with a RESTful Web API
 - browse all models build from 1964 to 1999
 - filter by year, category or feature
 - match model by serial number
 
-##Installation
+## Installation
 
 Clone the source code direct from Github repository:
 ```markdown
 git clone https://github.com/olecarl/vespa-api.git
 ```
 
-##Usage
+## Usage
+
 Start local webserver and your browser with this url:
+
 ```markdown
 symfony serve
 
@@ -29,4 +31,4 @@ Run the Codeception testsuite:
 vendor/bin/codecept run
 ```
 
-##Documentation
+## Documentation
