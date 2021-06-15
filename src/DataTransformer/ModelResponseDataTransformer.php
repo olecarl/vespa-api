@@ -24,6 +24,8 @@ final class ModelResponseDataTransformer implements DataTransformerInterface
         /** @var Model $object */
         $responseObject->type = $object->getType();
         $responseObject->title = $object->getTitle();
+        $responseObject->buildFrom = $object->getBuildFrom();
+        $responseObject->buildTo = $object->getBuildTo();
         $responseObject->quantity = $object->getQuantity();
 
         return $responseObject;

@@ -24,12 +24,24 @@ class ModelCest
         $I->haveHttpHeader('Content-Type', 'application/ld+json');
         $I->haveHttpHeader('accept', 'application/ld+json');
 
+        $this->tryToPostModel($I);
+    }
+
+    /**
+     * Try to POST model
+     *
+     * @param ApiTester $I
+     *
+     * @throws \Exception
+     */
+    public function tryToPostModel(ApiTester $I)
+    {
         $params = [
-            'title' => '50 N',
-            'type' => 'V5A1T',
-            'buildFrom' => '1963-01-01',
-            'buildTo' => '1971-12-31',
-            'quantity' => 273276
+                'title' => '50 N',
+                'type' => 'V5A1T',
+                'buildFrom' => '1963-01-01',
+                'buildTo' => '1971-12-31',
+                'quantity' => 273276
         ];
 
         $I->amGoingTo('create a new Model');

@@ -3,6 +3,7 @@
 
 namespace App\Dto;
 
+use \DateTime;
 
 /**
  * Class ModelResponse
@@ -24,6 +25,12 @@ final class ModelResponse
 
     /** @var string $title */
     public $title;
+
+    /** @var DateTime $buildFrom */
+    public $buildFrom;
+
+    /** @var DateTime $buildFrom */
+    public $buildTo;
 
     /** @var integer $quantity */
     public $quantity;
