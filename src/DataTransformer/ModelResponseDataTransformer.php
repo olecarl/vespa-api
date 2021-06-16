@@ -6,6 +6,7 @@ namespace App\DataTransformer;
 use ApiPlatform\Core\DataTransformer\DataTransformerInterface;
 use App\Dto\ModelResponse;
 use App\Entity\Model;
+use ApiPlatform\Core\Validator\ValidatorInterface;
 
 /**
  * Class ModelResponseDataTransformer
@@ -15,13 +16,28 @@ use App\Entity\Model;
 final class ModelResponseDataTransformer implements DataTransformerInterface
 {
 
+    private $validator;
+
+    /**
+     * ModelResponseDataTransformer constructor.
+     *
+     * @param ValidatorInterface $validator
+     */
+    public function __construct(ValidatorInterface $validator)
+    {
+        $this->validator = $validator;
+    }
+
+
     /**
      * {@inheritdoc}
      */
     public function transform($object, string $to, array $context = [])
     {
-        $responseObject = new ModelResponse();
         /** @var Model $object */
+        $this->validator->validate($object);
+
+        $responseObject = new ModelResponse();
         $responseObject->type = $object->getType();
         $responseObject->title = $object->getTitle();
         $responseObject->buildFrom = $object->getBuildFrom();
