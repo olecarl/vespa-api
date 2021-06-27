@@ -86,6 +86,7 @@
         "codeception/module-phpbrowser": "^1.0",
         "codeception/module-rest": "^1.2",
         "codeception/module-symfony": "^1.6",
+        "liip/monitor-bundle": "^2.16",
         "phpmetrics/phpmetrics": "^2.7"
     }
 }

@@ -176,6 +176,24 @@
     "laminas/laminas-code": {
         "version": "4.0.0"
     },
+    "laminas/laminas-diagnostics": {
+        "version": "1.8.0"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.3.0"
+    },
+    "liip/monitor-bundle": {
+        "version": "2.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.6",
+            "ref": "02ad65038eceb5231c73a530b67beedd955c40ed"
+        },
+        "files": [
+            "config/packages/monitor.yaml"
+        ]
+    },
     "myclabs/deep-copy": {
         "version": "1.10.2"
     },

@@ -1,0 +1,16 @@
+liip_monitor:
+    # enabling the controller requires that `assets` are enabled in the framework bundle
+    enable_controller: true
+
+    checks:
+        cpu_performance: ~
+        symfony_version: ~
+        process_running: [php]
+        readable_directory: ["%kernel.project_dir%/public","%kernel.cache_dir%"]
+        writable_directory: ["%kernel.cache_dir%"]
+        disk_usage:
+            warning: 75
+            critical: 95
+            path: '%kernel.cache_dir%'
+        #        doctrine_dbal: [default]
+        php_extensions: [xdebug]
