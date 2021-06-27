@@ -38,6 +38,9 @@ jobs:
     - name: Validate database schema
       run: bin/console doctrine:schema:validate --skip-sync --env test
 
+    - name: Database Migrations up-to-date
+      run: bin/console doctrine:migrations:up-to-date --env test
+
     - name: Run test suite
 
       run: composer run-script test run
