@@ -2,6 +2,7 @@
 
 namespace App\Tests\api;
 
+use Exception;
 use App\Tests\ApiTester;
 use Codeception\Util\HttpCode;
 
@@ -24,7 +25,11 @@ class ModelCest
         $I->haveHttpHeader('Content-Type', 'application/ld+json');
         $I->haveHttpHeader('accept', 'application/ld+json');
 
-        $this->tryToPostModel($I);
+        try {
+            $this->tryToPostModel($I);
+        } catch (Exception $exception) {
+
+        }
     }
 
     /**
@@ -32,7 +37,7 @@ class ModelCest
      *
      * @param ApiTester $I
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function tryToPostModel(ApiTester $I)
     {
