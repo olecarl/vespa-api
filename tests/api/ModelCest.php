@@ -83,6 +83,18 @@ class ModelCest
 
         $I->expect('Valid Json Response');
         $I->seeResponseIsJson();
+
+        $I->seeResponseMatchesJsonType(
+                [
+                        'brand' => 'string',
+                        'series' => 'string',
+                        'type' => 'string',
+                        'title' => 'string',
+                        'buildFrom' => 'integer',
+                        'buildTo' => 'integer',
+                        'quantity' => 'integer'
+                ]
+        );
     }
 
     /**
@@ -112,6 +124,12 @@ class ModelCest
                         '@type' => 'string',
                         'hydra:totalItems' => 'integer',
                         'hydra:member' => 'array'
+                ]
+        );
+        $I->seeResponseContainsJson(
+                [
+                    '@type' => 'hydra:Collection',
+                    '@context' => '/contexts/Model'
                 ]
         );
     }

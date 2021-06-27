@@ -40,8 +40,8 @@ final class ModelResponseDataTransformer implements DataTransformerInterface
         $responseObject = new ModelResponse();
         $responseObject->type = $object->getType();
         $responseObject->title = $object->getTitle();
-        $responseObject->buildFrom = $object->getBuildFrom();
-        $responseObject->buildTo = $object->getBuildTo();
+        $responseObject->buildFrom = intval($object->getBuildFrom()->format('Y'));
+        $responseObject->buildTo = intval($object->getBuildTo()->format('Y'));
         $responseObject->quantity = $object->getQuantity();
 
         return $responseObject;
