@@ -18,3 +18,7 @@ api_platform:
         json: ['application/merge-patch+json']
     swagger:
         versions: [3]
+
+    defaults:
+        pagination_items_per_page: 12
+        pagination_maximum_items_per_page: 50
