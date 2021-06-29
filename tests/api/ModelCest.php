@@ -98,6 +98,22 @@ class ModelCest
     }
 
     /**
+     * @param ApiTester $I
+     */
+    public function tryToUpdateModel(ApiTester $I) {
+        $I->haveHttpHeader('Content-Type', 'application/vnd.api+json');
+        $I->sendPatch('models/1', ['quantity' => 666666]);
+        $I->expect('Response is successful (200)');
+        $I->seeResponseCodeIsSuccessful();
+
+        $I->expect('current route is matching');
+        $I->seeCurrentRouteIs('api_models_patch_item');
+
+        $I->expect('Valid Json Response');
+        $I->seeResponseIsJson();
+    }
+
+    /**
      * Try to GET model collection
      *
      * @param ApiTester $I
