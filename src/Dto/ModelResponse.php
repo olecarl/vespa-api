@@ -17,11 +17,21 @@ final class ModelResponse
     public $brand = "vespa";
 
     /** @var string $series */
-    public $series;
+    public $series = "smallframe";
+
+    /** @var string $type */
+    public $type;
 
     /** @var string $title */
     public $title;
 
-    /** @var string $type */
-    public $type;
+    /** @var int $buildFrom */
+    public $buildFrom;
+
+    /** @var int $buildTo */
+    public $buildTo;
+
+    /** @var string $quantity */
+    public $quantity;
+
 }

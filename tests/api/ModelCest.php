@@ -2,6 +2,7 @@
 
 namespace App\Tests\api;
 
+use Exception;
 use App\Tests\ApiTester;
 use Codeception\Util\HttpCode;
 
@@ -24,12 +25,28 @@ class ModelCest
         $I->haveHttpHeader('Content-Type', 'application/ld+json');
         $I->haveHttpHeader('accept', 'application/ld+json');
 
+        try {
+            $this->tryToPostModel($I);
+        } catch (Exception $exception) {
+
+        }
+    }
+
+    /**
+     * Try to POST model
+     *
+     * @param ApiTester $I
+     *
+     * @throws Exception
+     */
+    public function tryToPostModel(ApiTester $I)
+    {
         $params = [
-            'title' => '50 N',
-            'type' => 'V5A1T',
-            'buildFrom' => '1963-01-01',
-            'buildTo' => '1971-12-31',
-            'quantity' => 273276
+                'title' => '50 N',
+                'type' => 'V5A1T',
+                'buildFrom' => '1963-01-01',
+                'buildTo' => '1971-12-31',
+                'quantity' => 273276
         ];
 
         $I->amGoingTo('create a new Model');
@@ -66,6 +83,34 @@ class ModelCest
 
         $I->expect('Valid Json Response');
         $I->seeResponseIsJson();
+
+        $I->seeResponseMatchesJsonType(
+                [
+                        'brand' => 'string',
+                        'series' => 'string',
+                        'type' => 'string',
+                        'title' => 'string',
+                        'buildFrom' => 'integer',
+                        'buildTo' => 'integer',
+                        'quantity' => 'integer'
+                ]
+        );
+    }
+
+    /**
+     * @param ApiTester $I
+     */
+    public function tryToUpdateModel(ApiTester $I) {
+        $I->haveHttpHeader('Content-Type', 'application/vnd.api+json');
+        $I->sendPatch('models/1', ['quantity' => 666666]);
+        $I->expect('Response is successful (200)');
+        $I->seeResponseCodeIsSuccessful();
+
+        $I->expect('current route is matching');
+        $I->seeCurrentRouteIs('api_models_patch_item');
+
+        $I->expect('Valid Json Response');
+        $I->seeResponseIsJson();
     }
 
     /**
@@ -95,6 +140,12 @@ class ModelCest
                         '@type' => 'string',
                         'hydra:totalItems' => 'integer',
                         'hydra:member' => 'array'
+                ]
+        );
+        $I->seeResponseContainsJson(
+                [
+                    '@type' => 'hydra:Collection',
+                    '@context' => '/contexts/Model'
                 ]
         );
     }

@@ -16,5 +16,10 @@ api_platform:
         paths: ['%kernel.project_dir%/src/Entity']
     patch_formats:
         json: ['application/merge-patch+json']
+        jsonapi:  ['application/vnd.api+json']
     swagger:
         versions: [3]
+
+    defaults:
+        pagination_items_per_page: 12
+        pagination_maximum_items_per_page: 50

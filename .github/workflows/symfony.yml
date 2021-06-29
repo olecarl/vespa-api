@@ -17,11 +17,18 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate
 
-    - name: Clear Composer Cache
-      run: composer clearcache
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
 
     - name: Install dependencies
-      run: composer install --prefer-dist
+      if: steps.composer-cache.outputs.cache-hit != 'true'
+      run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Symfony Requirements Check
       run: vendor/bin/requirements-checker
@@ -37,6 +44,9 @@ jobs:
 
     - name: Validate database schema
       run: bin/console doctrine:schema:validate --skip-sync --env test
+
+    - name: Database Migrations up-to-date
+      run: bin/console doctrine:migrations:up-to-date --env test
 
     - name: Run test suite
 
