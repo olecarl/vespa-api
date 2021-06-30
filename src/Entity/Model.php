@@ -32,6 +32,7 @@ class Model
     /**
      * @ORM\Column(type="string", length=6, nullable=false)
      * @Assert\NotBlank()
+     * @Assert\Type("string")
      * @Assert\Length(min="5", max="6")
      */
     private $type;
@@ -39,6 +40,7 @@ class Model
     /**
      * @ORM\Column(type="string", length=32, nullable=false)
      * @Assert\NotBlank()
+     * @Assert\Type("string")
      * @Assert\Length(min="1", max="32")
      */
     private $title;
@@ -55,6 +57,8 @@ class Model
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type("integer")
+     * @Assert\GreaterThan(1)
      */
     private $quantity;
 

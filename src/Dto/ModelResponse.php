@@ -3,6 +3,7 @@
 
 namespace App\Dto;
 
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ModelResponse
@@ -25,13 +26,26 @@ final class ModelResponse
     /** @var string $title */
     public $title;
 
-    /** @var int $buildFrom */
+    /**
+     * @var int $buildFrom
+     * @Assert\Type("integer")
+     * @Assert\Range(min=1940, max=2000)
+     */
     public $buildFrom;
 
-    /** @var int $buildTo */
+    /**
+     * @var int $buildTo
+     * @Assert\Type("integer")
+     * @Assert\Range(min=1940, max=2000)
+     * @Assert\Expression("value > this.buildFrom")
+     */
     public $buildTo;
 
-    /** @var string $quantity */
+    /**
+     * @var string $quantity
+     * @Assert\Type("integer")
+     * @Assert\Positive()
+     */
     public $quantity;
 
 }
