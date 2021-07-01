@@ -47,5 +47,4 @@ final class ModelResponse
      * @Assert\Positive()
      */
     public $quantity;
-
 }

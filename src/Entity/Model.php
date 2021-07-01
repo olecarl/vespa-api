@@ -5,13 +5,26 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ModelRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Dto\ModelResponse;
 
 /**
  * @ApiResource(
+ *     attributes={"security"="is_granted('ROLE_USER')"},
+ *     collectionOperations={
+ *         "get",
+ *         "post"={"security"="is_granted('ROLE_ADMIN')"}
+ *     },
+ *     itemOperations={
+ *         "get",
+ *         "put"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "patch"={"security"="is_granted('ROLE_ADMIN')"},
+ *         "delete"={"security"="is_granted('ROLE_ADMIN')"}
+ *     },
  *     output=ModelResponse::class
  * )
+ *
  * @ORM\Entity(repositoryClass=ModelRepository::class)
  * @ORM\Table(name="vespa_model")
  */
@@ -105,24 +118,24 @@ class Model
         return $this->type;
     }
 
-    public function getBuildFrom(): ?\DateTimeInterface
+    public function getBuildFrom(): ?DateTimeInterface
     {
         return $this->buildFrom;
     }
 
-    public function setBuildFrom(\DateTimeInterface $buildFrom): self
+    public function setBuildFrom(DateTimeInterface $buildFrom): self
     {
         $this->buildFrom = $buildFrom;
 
         return $this;
     }
 
-    public function getBuildTo(): ?\DateTimeInterface
+    public function getBuildTo(): ?DateTimeInterface
     {
         return $this->buildTo;
     }
 
-    public function setBuildTo(\DateTimeInterface $buildTo): self
+    public function setBuildTo(DateTimeInterface $buildTo): self
     {
         $this->buildTo = $buildTo;
 
