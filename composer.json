@@ -1,6 +1,6 @@
 {
     "name": "webconsole/api",
-    "description": "Another great webconsOLE API.",
+    "description": "Vespa model catalogue REST API",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "dev",
@@ -15,6 +15,7 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
+        "lexik/jwt-authentication-bundle": "^2.12",
         "nelmio/cors-bundle": "^2.1",
         "phpdocumentor/reflection-docblock": "^5.2",
         "symfony/asset": "5.2.*",

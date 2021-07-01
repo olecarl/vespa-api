@@ -19,6 +19,10 @@ api_platform:
         jsonapi:  ['application/vnd.api+json']
     swagger:
         versions: [3]
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
 
     defaults:
         pagination_items_per_page: 12
