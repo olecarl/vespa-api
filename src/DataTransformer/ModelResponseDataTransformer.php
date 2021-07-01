@@ -38,11 +38,11 @@ final class ModelResponseDataTransformer implements DataTransformerInterface
         $this->validator->validate($object);
 
         $responseObject = new ModelResponse();
-        $responseObject->type = $object->getType();
         $responseObject->title = $object->getTitle();
-        $responseObject->buildFrom = intval($object->getBuildFrom()->format('Y'));
-        $responseObject->buildTo = intval($object->getBuildTo()->format('Y'));
-        $responseObject->quantity = $object->getQuantity();
+        // $responseObject->type = $object->getType();
+        // $responseObject->buildFrom = intval($object->getBuildFrom()->format('Y'));
+        // $responseObject->buildTo = intval($object->getBuildTo()->format('Y'));
+        // $responseObject->quantity = $object->getQuantity();
 
         return $responseObject;
     }

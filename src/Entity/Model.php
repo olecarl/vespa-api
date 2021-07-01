@@ -30,37 +30,12 @@ class Model
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=6, nullable=false)
-     * @Assert\NotBlank()
-     * @Assert\Type("string")
-     * @Assert\Length(min="5", max="6")
-     */
-    private $type;
-
-    /**
      * @ORM\Column(type="string", length=32, nullable=false)
      * @Assert\NotBlank()
      * @Assert\Type("string")
      * @Assert\Length(min="1", max="32")
      */
     private $title;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $buildFrom;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $buildTo;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\Type("integer")
-     * @Assert\GreaterThan(1)
-     */
-    private $quantity;
 
     # </editor-fold>
 
@@ -70,12 +45,10 @@ class Model
      * Model constructor.
      *
      * @param string $title
-     * @param string $type
      */
-    public function __construct(string $title, string $type)
+    public function __construct(string $title)
     {
         $this->title = $title;
-        $this->type = $type;
     }
 
     # </editor-fold>
@@ -87,7 +60,7 @@ class Model
      */
     public function __toString(): string
     {
-        return $this->getTitle() . " (" . $this->getType() . ")";
+        return $this->getTitle();
     }
 
     public function getId(): int
@@ -98,47 +71,6 @@ class Model
     public function getTitle(): string
     {
         return $this->title;
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function getBuildFrom(): ?\DateTimeInterface
-    {
-        return $this->buildFrom;
-    }
-
-    public function setBuildFrom(\DateTimeInterface $buildFrom): self
-    {
-        $this->buildFrom = $buildFrom;
-
-        return $this;
-    }
-
-    public function getBuildTo(): ?\DateTimeInterface
-    {
-        return $this->buildTo;
-    }
-
-    public function setBuildTo(\DateTimeInterface $buildTo): self
-    {
-        $this->buildTo = $buildTo;
-
-        return $this;
-    }
-
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
-
-        return $this;
     }
 
     # </editor-fold>

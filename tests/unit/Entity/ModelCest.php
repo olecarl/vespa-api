@@ -21,9 +21,9 @@ class ModelCest
      */
     public function testToString(UnitTester $I)
     {
-        $model = new Model("Test", "X1A1T");
+        $model = new Model("Test");
 
         $I->assertIsString($model->__toString());
-        $I->assertEquals("Test (X1A1T)", $model->__toString());
+        $I->assertEquals("Test", $model->__toString());
     }
 }
