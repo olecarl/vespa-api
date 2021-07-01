@@ -15,7 +15,6 @@ use ApiPlatform\Core\Validator\ValidatorInterface;
  */
 final class ModelResponseDataTransformer implements DataTransformerInterface
 {
-
     private $validator;
 
     /**
@@ -38,11 +37,9 @@ final class ModelResponseDataTransformer implements DataTransformerInterface
         $this->validator->validate($object);
 
         $responseObject = new ModelResponse();
+        $responseObject->brand = ucfirst(ModelResponse::DEFAULT_BRAND);
+        $responseObject->category = ucfirst(ModelResponse::DEFAULT_CATEGORY);
         $responseObject->title = $object->getTitle();
-        // $responseObject->type = $object->getType();
-        // $responseObject->buildFrom = intval($object->getBuildFrom()->format('Y'));
-        // $responseObject->buildTo = intval($object->getBuildTo()->format('Y'));
-        // $responseObject->quantity = $object->getQuantity();
 
         return $responseObject;
     }
@@ -54,5 +51,4 @@ final class ModelResponseDataTransformer implements DataTransformerInterface
     {
         return ModelResponse::class === $to && $data instanceof Model;
     }
-
 }
