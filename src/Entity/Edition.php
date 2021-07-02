@@ -8,9 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use App\Dto\EditionResponse;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      output=EditionResponse::class
+ * )
  * @ORM\Entity(repositoryClass=EditionRepository::class)
  * @ORM\Table(name="vespa_edition")
  */
@@ -67,7 +70,7 @@ class Edition
      *
      * @Assert\Type("integer")
      * @Assert\Range(min=1940, max=2000)
-     * @Assert\Expression("value >= this.buildFrom")
+     * @Assert\Expression("value >= this.getBuildFrom()")
      *
      * @ORM\Column(type="integer", nullable=true)
      */
