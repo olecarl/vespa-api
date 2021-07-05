@@ -37,7 +37,7 @@ final class ModelResponse
      * @var int $buildTo
      * @Assert\Type("integer")
      * @Assert\Range(min=1940, max=2000)
-     * @Assert\Expression("value >= this.buildFrom")
+     * @Assert\GreaterThan()
      */
     public $buildTo;
 
