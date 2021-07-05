@@ -6,12 +6,9 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ModelRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Dto\ModelResponse;
 
 /**
- * @ApiResource(
- *     output=ModelResponse::class
- * )
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=ModelRepository::class)
  * @ORM\Table(name="vespa_model")
  */
@@ -46,19 +43,19 @@ class Model
     private $title;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="integer")
      */
     private $buildFrom;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="integer")
      */
     private $buildTo;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\Type("integer")
-     * @Assert\GreaterThan(1)
+     * @Assert\Positive()
      */
     private $quantity;
 
@@ -105,24 +102,24 @@ class Model
         return $this->type;
     }
 
-    public function getBuildFrom(): ?\DateTimeInterface
+    public function getBuildFrom(): ? int
     {
         return $this->buildFrom;
     }
 
-    public function setBuildFrom(\DateTimeInterface $buildFrom): self
+    public function setBuildFrom(int $buildFrom): self
     {
         $this->buildFrom = $buildFrom;
 
         return $this;
     }
 
-    public function getBuildTo(): ?\DateTimeInterface
+    public function getBuildTo(): ? int
     {
         return $this->buildTo;
     }
 
-    public function setBuildTo(\DateTimeInterface $buildTo): self
+    public function setBuildTo(int $buildTo): self
     {
         $this->buildTo = $buildTo;
 

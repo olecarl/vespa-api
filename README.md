@@ -2,9 +2,19 @@
 
 ![Build Status](https://github.com/olecarl/vespa-api/actions/workflows/symfony.yml/badge.svg)
 
+Classic Vespa model catalogue with a RESTful Web API.
+
+- fully featured hypermedia web API
+- supporting industry-leading standards: JSON-LD with Hydra, OpenApi, GraphQl
+- Automated Unit-, Functional- and API-Testing with 100% Coverage
+- Continuous Integration 
+- Semantic Versioning
+- Clean Code Standards
+- System Requirement Check
+- Health Check Monitor
+
 ## Features
 
-Classic Vespa model catalogue with a RESTful Web API
 - browse all models build from 1964 to 1999
 - filter by year, category or feature
 - match model by serial number

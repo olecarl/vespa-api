@@ -44,8 +44,8 @@ class ModelCest
         $params = [
                 'title' => '50 N',
                 'type' => 'V5A1T',
-                'buildFrom' => '1963-01-01',
-                'buildTo' => '1971-12-31',
+                'buildFrom' => 1963,
+                'buildTo' => 1971,
                 'quantity' => 273276
         ];
 
@@ -86,10 +86,10 @@ class ModelCest
 
         $I->seeResponseMatchesJsonType(
                 [
-                        'brand' => 'string',
-                        'series' => 'string',
-                        'type' => 'string',
+                        // 'brand' => 'string',
+                        // 'series' => 'string',
                         'title' => 'string',
+                        'type' => 'string',
                         'buildFrom' => 'integer',
                         'buildTo' => 'integer',
                         'quantity' => 'integer'
