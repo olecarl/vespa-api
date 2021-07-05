@@ -15,7 +15,6 @@ use ApiPlatform\Core\Validator\ValidatorInterface;
  */
 final class ModelResponseDataTransformer implements DataTransformerInterface
 {
-
     private $validator;
 
     /**
@@ -54,5 +53,4 @@ final class ModelResponseDataTransformer implements DataTransformerInterface
     {
         return ModelResponse::class === $to && $data instanceof Model;
     }
-
 }

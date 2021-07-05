@@ -4,15 +4,6 @@
 
 Classic Vespa model catalogue with a RESTful Web API.
 
-- fully featured hypermedia web API
-- supporting industry-leading standards: JSON-LD with Hydra, OpenApi, GraphQl
-- Automated Unit-, Functional- and API-Testing with 100% Coverage
-- Continuous Integration 
-- Semantic Versioning
-- Clean Code Standards
-- System Requirement Check
-- Health Check Monitor
-
 ## Features
 
 - browse all models build from 1964 to 1999
@@ -42,3 +33,9 @@ vendor/bin/codecept run
 ```
 
 ## Documentation
+
+Read the [Documentation](docs/index.md) for further information.
+
+## Issues
+
+Bug reports and feature requests can be submitted on the [Github Issue Tracker](https://github.com/olecarl/vespa-api/issues).

@@ -3,7 +3,6 @@
 
 namespace App\DataProvider;
 
-
 /**
  * Class ModelCollectionDataProvider
  *
