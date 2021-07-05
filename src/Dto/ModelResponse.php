@@ -3,7 +3,6 @@
 
 namespace App\Dto;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -33,6 +32,12 @@ final class ModelResponse
     public $buildFrom;
 
     /** @var integer $buildTo */
+    /**
+     * @var int $buildTo
+     * @Assert\Type("integer")
+     * @Assert\Range(min=1940, max=2000)
+     * @Assert\GreaterThan()
+     */
     public $buildTo;
 
     /** @var integer $quantity */
